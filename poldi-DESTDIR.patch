@@ -1,0 +1,11 @@
+--- poldi-0.2/src/pam/Makefile.am.orig	2004-11-01 21:41:39.000000000 +0100
++++ poldi-0.2/src/pam/Makefile.am	2005-10-06 12:25:28.000000000 +0200
+@@ -37,7 +37,7 @@
+ all-local: pam_poldi.so
+ 
+ install-pam-module:
+-	$(INSTALL) pam_poldi.so $(PAM_MODULE_DIRECTORY)
++	$(INSTALL) -D pam_poldi.so $(DESTDIR)$(PAM_MODULE_DIRECTORY)/pam_poldi.so
+ 
+ EXTRA_DIST = pam_poldi.c
+ 
