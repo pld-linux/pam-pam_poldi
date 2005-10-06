@@ -1,0 +1,14 @@
+--- poldi-0.2/doc/poldi.texi.orig	2004-11-07 17:44:35.000000000 +0100
++++ poldi-0.2/doc/poldi.texi	2005-10-06 12:27:13.000000000 +0200
+@@ -12,9 +12,9 @@
+ @setfilename poldi.info
+ @settitle The `Poldi Reference Manual
+ 
+-@dircategory GNU Utilities
++@dircategory Miscellaneous:
+ @direntry
+-* poldi: (poldi) PAM authenciation via OpenPGP smartcards.
++* poldi: (poldi).			PAM authenciation via OpenPGP smartcards
+ @end direntry
+ 
+ @include version.texi
