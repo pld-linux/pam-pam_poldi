@@ -1,5 +1,5 @@
 Summary:	PAM module implementing authentication via OpenPGP smartcards
-Summary(pl):	Modu³ PAM implementuj±cy uwierzytelnianie za pomoc± kart procesorowych OpenPGP
+Summary(pl.UTF-8):   ModuÅ‚ PAM implementujÄ…cy uwierzytelnianie za pomocÄ… kart procesorowych OpenPGP
 Name:		pam-pam_poldi
 Version:	0.3
 Release:	1
@@ -21,8 +21,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 PAM module implementing authentication via OpenPGP smartcards.
 
-%description -l pl
-Modu³ PAM implementuj±cy uwierzytelnianie za pomoc± kart procesorowych
+%description -l pl.UTF-8
+ModuÅ‚ PAM implementujÄ…cy uwierzytelnianie za pomocÄ… kart procesorowych
 OpenPGP.
 
 %prep
