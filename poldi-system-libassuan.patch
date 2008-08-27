@@ -1,0 +1,103 @@
+--- poldi-0.4/src/ctrl/Makefile.am.orig	2008-07-20 20:50:15.000000000 +0200
++++ poldi-0.4/src/ctrl/Makefile.am	2008-08-27 22:09:02.426116710 +0200
+@@ -29,12 +29,11 @@ poldi_ctrl_CFLAGS = \
+ 	-I$(top_srcdir)/src \
+ 	-I$(top_builddir)/src \
+ 	-I$(top_srcdir)/util \
+-	-I$(top_srcdir)/src/assuan \
+ 	$(GPG_ERROR_CFLAGS) \
+ 	$(LIBGCRYPT_CFLAGS)
+ 
+ poldi_ctrl_LDADD = \
+-	../scd/libscd.a ../util/libpoldi-util.a ../assuan/libassuan.a \
++	../scd/libscd.a ../util/libpoldi-util.a -lassuan \
+ 	$(LIBGCRYPT_LDFLAGS) \
+ 	$(LIBGCRYPT_LIBS) \
+ 	$(GPG_ERROR_LIBS)
+--- poldi-0.4/src/pam/auth-method-localdb/Makefile.am.orig	2008-08-07 19:04:03.000000000 +0200
++++ poldi-0.4/src/pam/auth-method-localdb/Makefile.am	2008-08-27 22:09:15.682113358 +0200
+@@ -24,8 +24,7 @@ AM_CPPFLAGS = \
+ 	-I$(top_srcdir)/src/util \
+ 	-I$(top_srcdir)/src/jnlib \
+ 	-I$(top_builddir)/src \
+-	-I$(top_srcdir)/src \
+-	-I$(top_srcdir)/src/assuan
++	-I$(top_srcdir)/src
+ 
+ include $(top_srcdir)/am/cmacros.am
+ 
+--- poldi-0.4/src/pam/auth-support/Makefile.am.orig	2008-07-20 20:50:16.000000000 +0200
++++ poldi-0.4/src/pam/auth-support/Makefile.am	2008-08-27 22:09:29.322117548 +0200
+@@ -24,8 +24,7 @@ AM_CPPFLAGS = \
+ 	-I$(top_srcdir)/src/util \
+ 	-I$(top_srcdir)/src/jnlib \
+ 	-I$(top_builddir)/src \
+-	-I$(top_srcdir)/src \
+-	-I$(top_srcdir)/src/assuan
++	-I$(top_srcdir)/src
+ 
+ include $(top_srcdir)/am/cmacros.am
+ 
+--- poldi-0.4/src/pam/auth-method-x509/Makefile.am.orig	2008-07-20 20:50:16.000000000 +0200
++++ poldi-0.4/src/pam/auth-method-x509/Makefile.am	2008-08-27 22:09:22.758127605 +0200
+@@ -24,8 +24,7 @@ AM_CPPFLAGS = \
+ 	-I$(top_srcdir)/src/util \
+ 	-I$(top_srcdir)/src/jnlib \
+ 	-I$(top_builddir)/src \
+-	-I$(top_srcdir)/src \
+-	-I$(top_srcdir)/src/assuan
++	-I$(top_srcdir)/src
+ 
+ include $(top_srcdir)/am/cmacros.am
+ 
+--- poldi-0.4/src/pam/Makefile.am.orig	2008-07-20 20:50:16.000000000 +0200
++++ poldi-0.4/src/pam/Makefile.am	2008-08-27 22:09:41.806116710 +0200
+@@ -22,8 +22,7 @@ AM_CPPFLAGS = \
+ 	-I$(top_srcdir)/src \
+ 	-I$(top_builddir)/src/pam \
+ 	-I$(top_builddir)/src \
+-	-I$(top_builddir) \
+-	-I$(top_srcdir)/src/assuan
++	-I$(top_builddir)
+ 
+ 
+ include $(top_srcdir)/am/cmacros.am
+@@ -64,7 +63,7 @@ pam_poldi.so: libpam_poldi.a $(AUTH_METH
+ 	gcc -shared -o pam_poldi.so -Wl,-u,pam_sm_authenticate \
+ 		libpam_poldi.a \
+ 		$(AUTH_METHODS_LIBS) auth-support/libpam-poldi-auth-support.a \
+-		../scd/libscd_shared.a ../util/libpoldi-util_shared.a ../assuan/libassuan.a \
++		../scd/libscd_shared.a ../util/libpoldi-util_shared.a -lassuan \
+ 		$(LIBGCRYPT_LDFLAGS) $(LIBGCRYPT_LIBS) $(KSBA_LIBS)
+ 
+ all-local: pam_poldi.so
+--- poldi-0.4/src/scd/Makefile.am.orig	2008-07-20 20:50:15.000000000 +0200
++++ poldi-0.4/src/scd/Makefile.am	2008-08-27 22:08:45.702139338 +0200
+@@ -9,7 +9,6 @@ scd_CFLAGS = \
+ 	-Wall \
+ 	-I$(top_builddir) \
+ 	-I$(top_srcdir)/src \
+-	-I$(top_srcdir)/src/assuan \
+ 	-I$(top_srcdir)/src/util \
+ 	$(GPG_ERROR_CFLAGS) \
+ 	$(LIBGCRYPT_CFLAGS)
+--- poldi-0.4/src/Makefile.am.orig	2008-08-04 00:29:19.000000000 +0200
++++ poldi-0.4/src/Makefile.am	2008-08-27 22:08:19.798120901 +0200
+@@ -17,6 +17,6 @@
+ # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ # 02111-1307, USA
+ 
+-SUBDIRS = assuan util scd pam ctrl
++SUBDIRS = util scd pam ctrl
+ 
+ EXTRA_DIST = README poldi.h
+--- poldi-0.4/configure.ac.orig	2008-08-08 01:50:15.000000000 +0200
++++ poldi-0.4/configure.ac	2008-08-27 22:10:50.590120063 +0200
+@@ -264,7 +264,6 @@ AC_CONFIG_FILES([Makefile
+ 		 m4/Makefile
+ 		 am/Makefile
+ 		 src/Makefile
+-		 src/assuan/Makefile
+ 		 src/util/Makefile
+ 		 src/scd/Makefile
+ 		 src/ctrl/Makefile
