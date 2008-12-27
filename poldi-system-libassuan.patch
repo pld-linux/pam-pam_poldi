@@ -50,9 +50,9 @@
  
  include $(top_srcdir)/am/cmacros.am
  
---- poldi-0.4/src/pam/Makefile.am.orig	2008-07-20 20:50:16.000000000 +0200
-+++ poldi-0.4/src/pam/Makefile.am	2008-08-27 22:09:41.806116710 +0200
-@@ -22,8 +22,7 @@ AM_CPPFLAGS = \
+--- poldi-0.4.1/src/pam/Makefile.am.orig	2008-12-22 23:03:52.000000000 +0100
++++ poldi-0.4.1/src/pam/Makefile.am	2008-12-27 12:30:23.018512992 +0100
+@@ -22,8 +22,7 @@
  	-I$(top_srcdir)/src \
  	-I$(top_builddir)/src/pam \
  	-I$(top_builddir)/src \
@@ -62,13 +62,13 @@
  
  
  include $(top_srcdir)/am/cmacros.am
-@@ -64,7 +63,7 @@ pam_poldi.so: libpam_poldi.a $(AUTH_METH
+@@ -64,7 +63,7 @@
  	gcc -shared -o pam_poldi.so -Wl,-u,pam_sm_authenticate \
  		libpam_poldi.a \
  		$(AUTH_METHODS_LIBS) auth-support/libpam-poldi-auth-support.a \
 -		../scd/libscd_shared.a ../util/libpoldi-util_shared.a ../assuan/libassuan.a \
 +		../scd/libscd_shared.a ../util/libpoldi-util_shared.a -lassuan \
- 		$(LIBGCRYPT_LDFLAGS) $(LIBGCRYPT_LIBS) $(KSBA_LIBS)
+ 		$(LIBGCRYPT_LIBS) $(KSBA_LIBS)
  
  all-local: pam_poldi.so
 --- poldi-0.4/src/scd/Makefile.am.orig	2008-07-20 20:50:15.000000000 +0200
