@@ -12,7 +12,7 @@ Patch1:		poldi-system-libassuan.patch
 URL:		http://www.gnupg.org/
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1:1.7.9
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	libassuan-devel
 BuildRequires:	libgcrypt-devel
 BuildRequires:	libgpg-error-devel >= 0.7
